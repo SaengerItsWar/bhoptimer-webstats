@@ -275,7 +275,7 @@ if (API_KEY != false) {SteamID::SetSteamAPIKey(API_KEY);}
                                 } ?>
                             </td>
                             <td><?php
-                            $steamid = SteamID::Parse($auth, SteamID::FORMAT_STEAMID3);
+                            $steamid = SteamID::Parse($auth, SteamID::FORMAT_S32);
                         echo '<a href="https://steamcommunity.com/profiles/'.$steamid->Format(SteamID::FORMAT_STEAMID64).'/" target="_blank">'.$auth.'</a>'; ?></td>
 
         					<td><?php if ($date[4] == '-') {
@@ -375,7 +375,7 @@ if (API_KEY != false) {SteamID::SetSteamAPIKey(API_KEY);}
                         } ?></td>
     					<td><?php echo $id; ?></td>
     					<td><?php
-                        $steamid = SteamID::Parse($auth, SteamID::FORMAT_STEAMID3);
+                        $steamid = SteamID::Parse($auth, SteamID::FORMAT_S32);
                         echo '<a href="https://steamcommunity.com/profiles/'.$steamid->Format(SteamID::FORMAT_STEAMID64).'/" target="_blank">'.$auth.'</a>'; ?></td>
     					<td><?php echo '<a href="index.php?stype=2&username='.$auth.'">'.$name.'</a>'; ?></td>
     					<td><?php echo formattoseconds($time); ?></td>
@@ -400,11 +400,11 @@ if (API_KEY != false) {SteamID::SetSteamAPIKey(API_KEY);}
                     } ?> </table> <?php
                 }
             } elseif ($top && (USES_RANKINGS == '1')) {
-                $stmt = $connection->prepare('SELECT auth, name, country, lastlogin, points FROM '.MYSQL_PREFIX.'users ORDER BY points DESC LIMIT '.PLAYER_TOP_RANKING_LIMIT.' OFFSET 0;');
+                $stmt = $connection->prepare('SELECT auth, name, lastlogin, points FROM '.MYSQL_PREFIX.'users ORDER BY points DESC LIMIT '.PLAYER_TOP_RANKING_LIMIT.' OFFSET 0;');
                 $stmt->execute();
                 $stmt->store_result();
                 $results = ($rows = $stmt->num_rows) > 0;
-                $stmt->bind_result($auth, $name, $country, $lastlogin, $points);
+                $stmt->bind_result($auth, $name, $lastlogin, $points);
 
                 if ($rows > 0) {
                     $first = true;
@@ -421,7 +421,6 @@ if (API_KEY != false) {SteamID::SetSteamAPIKey(API_KEY);}
                             <th>Rank</th>
                             <th>SteamID</th>
                             <th>Name</th>
-                            <th>Country</th>
                             <th>Last Seen</th>
                             <th>Points</th>
                             </thead>
@@ -468,10 +467,9 @@ if (API_KEY != false) {SteamID::SetSteamAPIKey(API_KEY);}
                             }
                         } ?></td>
                         <td><?php
-                        $steamid = SteamID::Parse($auth, SteamID::FORMAT_STEAMID3);
+                        $steamid = SteamID::Parse($auth, SteamID::FORMAT_S32);
                         echo '<a href="https://steamcommunity.com/profiles/'.$steamid->Format(SteamID::FORMAT_STEAMID64).'/" target="_blank">'.$auth.'</a>'; ?></td>
                         <td><?php echo '<a href="index.php?username='.$name.'">'.$name.'</a>'; ?></td>
-                        <td><?php echo $country; ?></td>
                         <td><?php echo date('Y-m-d H:i:s', $lastlogin); ?></td>
                         <td><?php echo $points; ?></td>
                         </tr>
@@ -585,7 +583,7 @@ if (API_KEY != false) {SteamID::SetSteamAPIKey(API_KEY);}
                         <tr>
                         <td><?php echo $id; ?></td>
                         <td><?php
-                        $steamid = SteamID::Parse($auth, SteamID::FORMAT_STEAMID3);
+                        $steamid = SteamID::Parse($auth, SteamID::FORMAT_S32);
                         echo '<a href="https://steamcommunity.com/profiles/'.$steamid->Format(SteamID::FORMAT_STEAMID64).'/" target="_blank">'.$auth.'</a>'; ?></td>
                         <td><?php echo $name; ?></td>
                         <td><?php echo '<a href="index.php?style='.$style.'&map='.removeworkshop($map).'&track='.$track.'">'.removeworkshop($map).'</a>'; ?></td>
