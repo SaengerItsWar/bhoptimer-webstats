@@ -10,7 +10,7 @@ A partial rework and improvement of [Shavit's bhoptimer webserver module](https:
   * If using MySQL version 5.7.5 or greater, you'll need to remove the ONLY_FULL_GROUP_BY clause from the sql_mode variable. This can be done by entering SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY','')); in your MySQL console as root or another user with full privileges.
 * A webserver with PHP (tested on lighttpd 1.4.35 running php-cgi 5.6.33 on Debian 8, lighttpd 1.4.48 running php-fpm 7.1.7 on OSX 10.13)
   * If you want to use vanity URL searching, the php-curl extension must be installed as well.
-  * If you want to use the this Site with PHP 7.3.x or higher you need to install php-bcmath else the website will not work right. 
+  * If you want to use this Site with PHP 7.3.x or higher you need to install manually php-bcmath else the website will not work right. 
 
 ### Features
 
